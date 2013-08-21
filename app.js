@@ -66,6 +66,8 @@ query(function (db, uri) {
   app.get('/', middleware, routes.talk.index);
   app.get('/talk/:talk', middleware, routes.talk.get);
 
+  app.get('/post/:talk', middleware, routes.post.index);
+
   
   app.get('/login', routes.auth.login);
   app.get('/login/callback', routes.auth.callback);

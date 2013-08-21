@@ -1,18 +1,21 @@
 
 
+var ObjectID = require('mongodb').ObjectID;
 
 /*
- * GET talks list
+ * GET posts list
  */
-exports.get = function(req, res){
+exports.index = function(req, res){
 	var Talk = req.model('talk')
-	  ,	talkId = req.params('talk');
+	  ,	talkId = req.param('talk')
+	  ,	since = req.param('since');
 
-	Talk.find({}, function (err, talks) {
+	Talk.getPosts({_id: new ObjectID(talkId), since: since}, function (err, posts) {
 		if (err) {
 			res.send('Database error', 500);
 		} else {
-			res.render('index', { title: 'oi', talks: talks });
+			console.log(posts);
+			res.render('index', { posts: posts });
 		}
 	});
   
