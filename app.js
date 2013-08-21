@@ -64,6 +64,11 @@ query(function (db, uri) {
   ];
 
   app.get('/', middleware, routes.talk.index);
+
+  
+  app.get('/login', routes.auth.login);
+  app.get('/login/callback', routes.auth.callback);
+  app.get('/logout', routes.auth.logout);
   
 
   http.createServer(app).listen(app.get('port'), function(){

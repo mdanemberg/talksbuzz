@@ -2,9 +2,9 @@
 
 module.exports = {
 	facebook: {
-		app_id: '112755808894970',
-		app_secret: 'aa4b8eeaf42c79371b503384d41c894a',
-		callback_url: 'http://localhost:3000/login/callback'
+		app_id: '512404112161744',
+		app_secret: '991944e5815e0b3ddaecbc83a61af5b1',
+		callback_url: 'http://localhost:8000/login/callback'
 	},
 	database: {
 		host: 'localhost',
