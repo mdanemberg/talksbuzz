@@ -1,0 +1,17 @@
+
+
+module.exports = {
+	facebook: {
+		app_id: '112755808894970',
+		app_secret: 'aa4b8eeaf42c79371b503384d41c894a',
+		callback_url: 'http://localhost:3000/login/callback'
+	},
+	database: {
+		host: 'localhost',
+		port: '27017',
+		database: 'talksbuzz'
+	},
+	locale: {
+		default: 'en-us'
+	}
+};
