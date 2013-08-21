@@ -1,7 +1,6 @@
 
 
-
-var index = require('../models/index');
+var ObjectID = require('mongodb').ObjectID;
 
 /*
  * GET talks list
@@ -13,7 +12,21 @@ exports.index = function(req, res){
 		if (err) {
 			res.send('Database error', 500);
 		} else {
-			res.render('index', { title: 'oi', talks: talks });
+			res.render('index', { talks: talks });
+		}
+	});
+  
+};
+
+exports.get = function(req, res){
+	var Talk = req.model('talk')
+	  ,	talkId = req.param('talk');
+
+	Talk.findOne({_id: new ObjectID(talkId)}, function (err, talk) {
+		if (err) {
+			res.send('Database error', 500);
+		} else {
+			res.render('talk', { talk: talk });
 		}
 	});
   
