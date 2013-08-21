@@ -7,7 +7,17 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+  	<ul>
+  		<% for(var i = 0; i < talks.length; i++) {%>
+  		<li class="talk">
+  			<span class="status"><%= talks[i].status %></span>
+  			<img src="<%= talks[i].thumb %>" alt="">
+  			<p class="description"><%= talks[i].description %></p>
+  		</li>
+  		<% } %>
+  	</ul>
   </body>
 </html>
+
+
+db.talk.save({title:'javascript', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio quos.', thumb: 'https://si0.twimg.com/profile_images/2722318494/71f222313b2087d54eb993e19899a5fd.jpeg', startDate: '1', endDate: '2', presenter: 'Crockford'})
