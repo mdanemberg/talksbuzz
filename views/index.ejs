@@ -1,24 +1,14 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/bootstrap/css/bootstrap.min.css' />
-    <link rel='stylesheet' href='/bootstrap/css/bootstrap-responsive.min.css' />
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-  	<h1>Talks Buzz</h1>
+<% include layout/header %>
   	<ul class="talks">
   		<% for(var i = 0; i < talks.length; i++) {%>
   		<li class="talk well">
   			<span class="status"></span>
   			<img src="<%= talks[i].thumb %>" alt="">
-  			<p class="description"><%= talks[i].description %></p>
+  			<a href="/talk/<%= talks[i]._id %>" title = "<%= talks[i].description %>" class="description"><%= talks[i].description %></a>
   		</li>
   		<% } %>
   	</ul>
-  </body>
-</html>
+<% include layout/footer %>
 <!-- 
 	db.talk.save({title:'javascript', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio quos.', thumb: 'https://si0.twimg.com/profile_images/2722318494/71f222313b2087d54eb993e19899a5fd.jpeg', startDate: '1', endDate: '2', presenter: 'Crockford'})
  -->

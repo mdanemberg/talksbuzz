@@ -1,0 +1,14 @@
+<% include layout/header %>
+	<div class="talk well">
+		<span class="status"></span>
+		<img src="<%= talk.thumb %>" alt="">
+		<p  class="description"><%= talk.description %></p>
+		<ul class="timeline">
+			<% for(var i = talk.posts.length; i > 0; i--) {%>
+				<p><%= talk.posts[i].author %></p>
+				<p><%= talk.posts[i].body %></p>
+				<p><%= talk.posts[i].date %></p>
+			<% } %>
+		</ul>
+	</div>
+<% include layout/footer %>
