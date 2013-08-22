@@ -2,6 +2,7 @@
   	<ul class="talks">
   		<% for(var i = 0; i < talks.length; i++) {%>
   		<li class="talk jumbotron clearfix">
+  			<!-- TODO: make validation status -->
   			<span class="label label-success">Done</span>
   			<span class="label label-primary">Live</span>
   			<span class="label label-warning">Upcoming</span>
@@ -9,12 +10,8 @@
   			<h3 class="title"><%= talks[i].title %></h3>
   			<h4 class="presenter"><%= talks[i].presenter %></h4>
   			<p class="description"><%= talks[i].description %></p>
-  			<a class="btn btn-primary btn-lg">GO</a>
-  			<a href="/talk/<%= talks[i]._id %>" title = "<%= talks[i].description %>" class="description"><%= talks[i].description %></a>
+  			<a href="/talk/<%= talks[i]._id %>" title="Go to <%= talks[i].title %>" class="btn btn-primary btn-lg">GO</a>
   		</li>
   		<% } %>
   	</ul>
 <% include layout/footer %>
-<!-- 
-	db.talk.save({title:'javascript', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio quos.', thumb: 'https://si0.twimg.com/profile_images/2722318494/71f222313b2087d54eb993e19899a5fd.jpeg', startDate: '1', endDate: '2', presenter: 'Crockford'})
- -->
