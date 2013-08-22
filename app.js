@@ -42,29 +42,42 @@ query(function (db, uri) {
     app.use(express.errorHandler());
   }
 
+  var noAuth = ['/'];
   var middleware = [
     function (req, res, next) {
-    //exposing the database
-    req.db = db;
-    // models loader
-    var modelsLoaded = {};
+      //exposing the database
+      req.db = db;
+      // models loader
+      var modelsLoaded = {};
 
 
-    req.model = function (model) {
-      console.log(model);
-      if (modelsLoaded[model] === undefined) {
-        modelsLoaded[model] = require('./models/' + model);
+      req.model = function (model) {
+        console.log(model);
+        if (modelsLoaded[model] === undefined) {
+          modelsLoaded[model] = require('./models/' + model);
+        }
+
+
+        return modelsLoaded[model];
+      };
+      console.log(req.user);
+      //exposing user to view
+      if (req.user) {
+        res.locals.user = req.user[0];
+      } else {
+        if (noAuth.indexOf(req.url) === -1) {
+          res.redirect('/login');
+        }
       }
-
-
-      return modelsLoaded[model];
-    };
-    next();
+      next();
     }
   ];
 
   app.get('/', middleware, routes.talk.index);
   app.get('/talk/:talk', middleware, routes.talk.get);
+
+  app.get('/post/:talk', middleware, routes.post.index);
+  app.post('/post/:talk', middleware, routes.post.create);
 
   
   app.get('/login', routes.auth.login);
