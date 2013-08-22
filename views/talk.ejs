@@ -4,8 +4,8 @@
 		<img src="<%= talk.thumb %>" alt="">
 		<p  class="description"><%= talk.description %></p>
 		<ul class="timeline">
-			<% for(var i = talk.posts.length; i > 0; i--) {%>
-				<p><%= talk.posts[i].author %></p>
+			<% for(var i = talk.posts.length - 1; i >= 0; i--) {%>
+				<p><a target="_blank" href="http://facebook.com/<%= talk.posts[i].author.id %>" title="Author"><%= talk.posts[i].author.name %></a></p>
 				<p><%= talk.posts[i].body %></p>
 				<p><%= talk.posts[i].date %></p>
 			<% } %>
