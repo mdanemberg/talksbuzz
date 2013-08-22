@@ -52,7 +52,6 @@ query(function (db, uri) {
 
 
       req.model = function (model) {
-        console.log(model);
         if (modelsLoaded[model] === undefined) {
           modelsLoaded[model] = require('./models/' + model);
         }
@@ -60,7 +59,6 @@ query(function (db, uri) {
 
         return modelsLoaded[model];
       };
-      console.log(req.user);
       //exposing user to view
       if (req.user) {
         res.locals.user = req.user[0];

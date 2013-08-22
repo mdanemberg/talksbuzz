@@ -3,16 +3,62 @@
 		<span class="status"></span>
 		<img src="<%= talk.thumb %>" alt="">
 		<p  class="description"><%= talk.description %></p>
-		<form method="POST" action="/post/<%= talk._id %>">
-			<textarea name="body"></textarea>
+		<form id="timeline-form" method="POST" action="/post/<%= talk._id %>">
+			<textarea id="body" name="body"></textarea>
 			<input type="submit">
 		</form>
 		<ul class="timeline">
 			<% for(var i = talk.posts.length - 1; i >= 0; i--) {%>
-				<p><a target="_blank" href="http://facebook.com/<%= talk.posts[i].author.id %>" title="Author"><%= talk.posts[i].author.name %></a></p>
-				<p><%= talk.posts[i].body %></p>
-				<p><%= talk.posts[i].date %></p>
+				<li>
+					<p><a target="_blank" href="http://facebook.com/<%= talk.posts[i].author.id %>" title="Author"><%= talk.posts[i].author.name %></a></p>
+					<p><%= talk.posts[i].body %></p>
+					<p><%= talk.posts[i].date %></p>
+				</li>
 			<% } %>
 		</ul>
 	</div>
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript">
+		//temp code before websocket implementation
+		var since = <%= talk.posts.length %>;
+		$('#timeline-form').on('submit', function (ev) {
+			ev.preventDefault();
+			var $this = $(this);
+
+			$.ajax({
+				method: 'post',
+				url: $this.attr('action'),
+				data: {
+					body: $this.find('#body').val()
+				},
+				success: function (data) {
+					$this.find('#body').val('').focus();
+					updateTimeline();
+				}
+			});
+		});
+
+		var $timeline = $('.timeline');
+		function updateTimeline () {
+			$.ajax({
+				method: 'get',
+				url: '/post/<%= talk._id %>',
+				data: {since: since},
+				success: function (data) {
+					var html = '';
+					for (var i = data.length - 1; i >= 0; i--) {
+						since += 1;
+						html += '<li>';
+						html += '	<p><a target="_blank" href="http://facebook.com/' + data[i].author.id + '" title="Author">' + data[i].author.name + '</a></p>';
+						html += '	<p>' + data[i].body + '</p>';
+						html += '	<p>' + data[i].date + '</p>';
+						html += '</li>';
+					}
+					$timeline.children('li:first').prepend(html);
+				}
+			});
+		}
+
+		setInterval(updateTimeline, 2000);
+	</script>
 <% include layout/footer %>
