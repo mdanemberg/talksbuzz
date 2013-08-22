@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title></title>
     <link rel='stylesheet' href='/bootstrap/css/bootstrap.min.css' />
     <link rel='stylesheet' href='/bootstrap/css/bootstrap-responsive.min.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -10,10 +10,15 @@
   	<h1>Talks Buzz</h1>
   	<ul class="talks">
   		<% for(var i = 0; i < talks.length; i++) {%>
-  		<li class="talk well">
-  			<span class="status"></span>
+  		<li class="talk jumbotron clearfix">
+  			<span class="label label-success">Done</span>
+  			<span class="label label-primary">Live</span>
+  			<span class="label label-warning">Upcoming</span>
   			<img src="<%= talks[i].thumb %>" alt="">
+  			<h3 class="title"><%= talks[i].title %></h3>
+  			<h4 class="presenter"><%= talks[i].presenter %></h4>
   			<p class="description"><%= talks[i].description %></p>
+  			<a class="btn btn-primary btn-lg">GO</a>
   		</li>
   		<% } %>
   	</ul>
