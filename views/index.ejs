@@ -7,7 +7,7 @@
   			<h3 class="title"><%= talks[i].title %></h3>
   			<h4 class="presenter"><%= talks[i].presenter %></h4>
   			<p class="description"><%= talks[i].description %></p>
-  			<a href="/talk/<%= talks[i]._id %>" title="Go to <%= talks[i].title %>" class="btn btn-primary">go to timeline</a>
+  			<a href="/talk/<%= talks[i].uri %>" title="Go to <%= talks[i].title %>" class="btn btn-primary">go to timeline</a>
   		</article>
   		<% } %>
   	</section>

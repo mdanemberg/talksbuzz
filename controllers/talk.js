@@ -20,9 +20,9 @@ exports.index = function(req, res){
 
 exports.get = function(req, res){
 	var Talk = req.model('talk')
-	  ,	talkId = req.param('talk');
+	  ,	talkURI = req.param('talk');
 
-	Talk.findOne({_id: new ObjectID(talkId)}, function (err, talk) {
+	Talk.findOne({uri: talkURI}, function (err, talk) {
 		if (err) {
 			res.send('Database error', 500);
 		} else {
