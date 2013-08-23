@@ -1,0 +1,46 @@
+radiusAll($size){
+    -webkit-border-radius: $size;
+    -moz-border-radius: $size;
+    border-radius: $size;
+}
+
+.talks {
+	.talk {
+		width:750px;
+		margin:0 auto;
+		position:relative;
+		margin-bottom:30px;
+
+		.label {
+			position:absolute;
+			top:15px;
+			right:15px;
+		}
+
+		img {
+			float:left;
+			margin-right:15px;
+			width:200px;
+			height:200px;
+			radiusAll(200px);
+		}
+
+		.presenter {
+			color:#e8d069;
+			font-family: "Cabin",Arial,sans-serif;
+		}
+
+		.btn {
+			width:200px;
+			position:absolute;
+			left:50%;
+			margin-left:-100px;
+			bottom:15px;
+			text-transform:uppercase;
+		}
+
+		.description {
+			font-size:15px;
+		}
+	}
+}

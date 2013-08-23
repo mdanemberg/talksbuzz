@@ -1,0 +1,35 @@
+.talks .talk {
+  width: 750px;
+  margin: 0 auto;
+  position: relative;
+  margin-bottom: 30px;
+}
+.talks .talk .label {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.talks .talk img {
+  float: left;
+  margin-right: 15px;
+  width: 200px;
+  height: 200px;
+  -webkit-border-radius: 200px;
+  -moz-border-radius: 200px;
+  border-radius: 200px;
+}
+.talks .talk .presenter {
+  color: #e8d069;
+  font-family: "Cabin", Arial, sans-serif;
+}
+.talks .talk .btn {
+  width: 200px;
+  position: absolute;
+  left: 50%;
+  margin-left: -100px;
+  bottom: 15px;
+  text-transform: uppercase;
+}
+.talks .talk .description {
+  font-size: 15px;
+}

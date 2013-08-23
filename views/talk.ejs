@@ -2,6 +2,8 @@
 	<div class="talk well">
 		<span class="status"></span>
 		<img src="<%= talk.thumb %>" alt="">
+		<h3><%= talk.title %></h3>
+		<h3 class="presenter"><%= talk.presenter %></h3>
 		<p  class="description"><%= talk.description %></p>
 		<form id="timeline-form" method="POST" action="/post/<%= talk._id %>">
 			<textarea id="body" name="body"></textarea>
