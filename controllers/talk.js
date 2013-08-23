@@ -12,6 +12,12 @@ exports.index = function(req, res){
 		if (err) {
 			res.send('Database error', 500);
 		} else {
+			for (var i = 0, max = talks.length; i < max; i++) {
+				var description = talks[i].description.substr(0,197);
+				if (description.length == 197) description = description + '...';
+				talks[i].description = description;
+			}
+
 			res.render('index', { talks: talks });
 		}
 	});

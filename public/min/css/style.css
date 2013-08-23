@@ -33,3 +33,51 @@
 .talks .talk .description {
   font-size: 15px;
 }
+.page-talk {
+  margin: 0 2%;
+}
+.page-talk .header {
+  width: 100%;
+  float: left;
+  padding-bottom: 30px;
+}
+.page-talk .header .thumb {
+  width: 300px;
+  height: 300px;
+  -webkit-border-radius: 300px;
+  -moz-border-radius: 300px;
+  border-radius: 300px;
+  float: left;
+  margin-right: 30px;
+}
+.page-talk .header .presenter {
+  color: #e8d069;
+  font-family: "Cabin", Arial, sans-serif;
+}
+.page-talk .grid-timeline {
+  width: 500px;
+  margin: 0 auto;
+}
+.page-talk .grid-timeline textarea {
+  width: 500px;
+  height: 78px;
+  resize: none;
+}
+.page-talk .grid-timeline button {
+  float: right;
+}
+.page-talk .grid-timeline .submit-post {
+  margin-right: 15px;
+}
+.page-talk .grid-timeline .timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.page-talk .grid-timeline .timeline li {
+  display: block;
+  width: 100%;
+  background: #13a0aa;
+  padding: 15px;
+  margin-bottom: 5px;
+}

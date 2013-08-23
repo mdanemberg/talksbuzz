@@ -1,24 +1,35 @@
 <% include layout/header %>
-	<div class="talk well">
-		<span class="status"></span>
-		<img src="<%= talk.thumb %>" alt="">
-		<h3><%= talk.title %></h3>
-		<h3 class="presenter"><%= talk.presenter %></h3>
-		<p  class="description"><%= talk.description %></p>
-		<form id="timeline-form" method="POST" action="/post/<%= talk._id %>">
-			<textarea id="body" name="body"></textarea>
-			<input type="submit">
-		</form>
-		<ul class="timeline">
-			<% for(var i = talk.posts.length - 1; i >= 0; i--) {%>
+	<article class="page-talk well">
+		<header class="header">
+			<img src="<%= talk.thumb %>" alt="<%= talk.presenter %>" class="thumb">
+			<h3><%= talk.title %></h3>
+			<h4 class="presenter"><%= talk.presenter %></h4>
+			<p  class="description"><%= talk.description %></p>
+		</header>
+		<section class="grid-timeline">
+			<form class="bs-example form-horizontal" id="timeline-form" method="POST" action="/post/<%= talk._id %>">
+				<fieldset>
+					<div class="form-group">
+						<div class="col-lg-10">
+							<textarea class="form-control" rows="3" id="body" name="body" placeholder="What's the buzz?"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary submit-post">Submit</button> 
+					</div>
+				</fieldset>
+			</form>
+			<ul class="timeline">
+				<% for(var i = talk.posts.length - 1; i >= 0; i--) {%>
 				<li>
 					<p><a target="_blank" href="http://facebook.com/<%= talk.posts[i].author.id %>" title="Author"><%= talk.posts[i].author.name %></a></p>
 					<p><%= talk.posts[i].body %></p>
 					<p><%= talk.posts[i].date %></p>
 				</li>
-			<% } %>
-		</ul>
-	</div>
+				<% } %>
+			</ul>
+		</section>
+	</article>
 	<script type="text/javascript" src="/js/jquery.js"></script>
 	<script type="text/javascript">
 		//temp code before websocket implementation

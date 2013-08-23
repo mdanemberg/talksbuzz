@@ -3,7 +3,7 @@
   		<% for(var i = 0; i < talks.length; i++) {%>
   		<article class="talk jumbotron clearfix">
   			<span class="label label-warning">Upcoming</span>
-  			<img src="<%= talks[i].thumb %>" alt="">
+  			<img src="<%= talks[i].thumb %>" alt="<%= talk.presenter %>">
   			<h3 class="title"><%= talks[i].title %></h3>
   			<h4 class="presenter"><%= talks[i].presenter %></h4>
   			<p class="description"><%= talks[i].description %></p>
