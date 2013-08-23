@@ -52,4 +52,24 @@ model.findOne = function (filter, cb) {
 	});
 };
 
+model._find = model.find;
+
+model.find = function (filter, cb) {
+	this._find({}, function (err, talks) {
+		if (!err) {
+			var now = new Date();
+			for (var i = 0; i < talks.length; i++) {
+				talks[i].status = 'upcoming';
+				if (talks[i].finished) {
+					talks[i].status = 'done';
+				} else if (talks[i].startDate > now) {
+					talks[i].status = 'live';
+				}
+
+			};
+		}
+		cb(err, talks);
+	});
+};
+
 module.exports = model;
