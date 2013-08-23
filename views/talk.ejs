@@ -5,7 +5,7 @@
 		<h3><%= talk.title %></h3>
 		<h3 class="presenter"><%= talk.presenter %></h3>
 		<p  class="description"><%= talk.description %></p>
-		<form id="timeline-form" method="POST" action="/post/<%= talk._id %>">
+		<form id="timeline-form" method="POST" action="/post/<%= talk.uri %>">
 			<textarea id="body" name="body"></textarea>
 			<input type="submit">
 		</form>
@@ -44,7 +44,7 @@
 		function updateTimeline () {
 			$.ajax({
 				method: 'get',
-				url: '/post/<%= talk._id %>',
+				url: '/post/<%= talk.uri %>',
 				data: {since: since},
 				success: function (data) {
 					var html = '';
