@@ -9,8 +9,14 @@ var express = require('express')
   , passport = require('passport')
   , MongoStore = require('connect-mongo')(express)
   , query = require('./database')
-  , app = express();
+  , app = express()
+  , bundleUp = require('bundle-up2');
 
+bundleUp(app, path.join(__dirname, 'assets'), {
+    staticRoot: path.join(__dirname, 'public'),
+    staticUrlRoot: '/',
+    complete: console.log.bind(console, 'Bundle-up: static files are minified / ready')
+});
 
 // all environments
 app.set('port', process.env.PORT || 8000);
