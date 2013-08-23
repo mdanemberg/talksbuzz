@@ -9,7 +9,8 @@ var express = require('express')
   , passport = require('passport')
   , MongoStore = require('connect-mongo')(express)
   , query = require('./database')
-  , app = express();
+  , app = express()
+  , io = require('socket.io').listen(app);
 
 
 // all environments
