@@ -7,10 +7,10 @@ var ObjectID = require('mongodb').ObjectID;
  */
 exports.index = function(req, res){
 	var Talk = req.model('talk')
-	  ,	talkId = req.param('talk')
+	  ,	talkURI = req.param('talk')
 	  ,	since = req.param('since');
 
-	Talk.getPosts({_id: new ObjectID(talkId), since: since}, function (err, posts) {
+	Talk.getPosts({uri: talkURI, since: since}, function (err, posts) {
 		if (err) {
 			res.send('Database error', 500);
 		} else {
@@ -25,7 +25,7 @@ exports.index = function(req, res){
  */
 exports.create = function(req, res){
 	var Talk = req.model('talk')
-	  ,	talkId = req.param('talk');
+	  ,	talkURI = req.param('talk');
 	
 	var post = {
 		author: req.user[0]._id,
@@ -34,7 +34,7 @@ exports.create = function(req, res){
 	};
 
 
-	Talk.update({_id: new ObjectID(talkId)}, {'$push': {posts: post}}, function (err, talk) {
+	Talk.update({uri: talkURI}, {'$push': {posts: post}}, function (err, talk) {
 		if (err) {
 			res.send('Database error', 500);
 		} else {

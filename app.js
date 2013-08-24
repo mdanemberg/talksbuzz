@@ -10,6 +10,7 @@ var express = require('express')
   , MongoStore = require('connect-mongo')(express)
   , query = require('./database')
   , app = express()
+  , io = require('socket.io').listen(app)
   , bundleUp = require('bundle-up2');
 
 bundleUp(app, path.join(__dirname, 'assets'), {
@@ -17,6 +18,7 @@ bundleUp(app, path.join(__dirname, 'assets'), {
     staticUrlRoot: '/',
     complete: console.log.bind(console, 'Bundle-up: static files are minified / ready')
 });
+
 
 // all environments
 app.set('port', process.env.PORT || 8000);

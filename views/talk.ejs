@@ -55,7 +55,7 @@
 		function updateTimeline () {
 			$.ajax({
 				method: 'get',
-				url: '/post/<%= talk._id %>',
+				url: '/post/<%= talk.uri %>',
 				data: {since: since},
 				success: function (data) {
 					var html = '';
