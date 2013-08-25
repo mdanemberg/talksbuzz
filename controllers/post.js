@@ -1,11 +1,13 @@
 
 
-var ObjectID = require('mongodb').ObjectID;
+var ObjectID = require('mongodb').ObjectID
+  ,	Talk = require('../models/talk');
 
 /*
  * GET posts list
  */
 exports.index = function(req, res){
+	
 	var Talk = req.model('talk')
 	  ,	talkURI = req.param('talk')
 	  ,	since = req.param('since');
@@ -24,6 +26,7 @@ exports.index = function(req, res){
  * POST post
  */
 exports.create = function(req, res){
+	
 	var Talk = req.model('talk')
 	  ,	talkURI = req.param('talk');
 	
@@ -39,6 +42,24 @@ exports.create = function(req, res){
 			res.send('Database error', 500);
 		} else {
 			res.send(post);
+		}
+	});
+};
+
+exports.getPosts = function(data, cb) {
+	var talkURI = data.talk
+	  ,	since = data.since;
+
+	Talk.getPosts({uri: talkURI, since: since}, function (err, posts) {
+		if (err) {
+			cb({
+				status: 'error'
+			});
+		} else {
+			cb({
+				status: 'ok',
+				posts: posts
+			});
 		}
 	});
 };

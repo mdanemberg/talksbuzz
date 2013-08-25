@@ -31,9 +31,16 @@
 		</section>
 	</article>
 	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
 	<script type="text/javascript">
-		//temp code before websocket implementation
+		var socket = io.connect('http://localhost:8000');
 		var since = <%= talk.posts.length %>;
+	  	socket.emit('getPosts', { talk: '<%= talk.uri %>', since: since }, function (data) {
+	  		console.log(data);
+	  	});
+	
+		//temp code before websocket implementation
+		
 		$('#timeline-form').on('submit', function (ev) {
 			ev.preventDefault();
 			var $this = $(this);

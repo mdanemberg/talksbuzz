@@ -8,7 +8,7 @@ var ObjectID = require('mongodb').ObjectID;
 exports.index = function(req, res){
 	var Talk = req.model('talk');
 
-	Talk.find({}, function (err, talks) {
+	Talk.find({'$order': {startDate: -1}}, function (err, talks) {
 		if (err) {
 			res.send('Database error', 500);
 		} else {
@@ -21,7 +21,6 @@ exports.index = function(req, res){
 			res.render('index', { talks: talks });
 		}
 	});
-  
 };
 
 exports.get = function(req, res){

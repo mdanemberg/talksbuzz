@@ -10,7 +10,7 @@ var express = require('express')
   , MongoStore = require('connect-mongo')(express)
   , query = require('./database')
   , app = express()
-  , io = require('socket.io').listen(app)
+  , io = require('socket.io')
   , bundleUp = require('bundle-up2');
 
 bundleUp(app, path.join(__dirname, 'assets'), {
@@ -53,7 +53,7 @@ query(function (db, uri) {
   var noAuth = ['/'];
   var middleware = [
     function (req, res, next) {
-      //exposing the database
+      //exposing the database and socket.io
       req.db = db;
       // models loader
       var modelsLoaded = {};
@@ -91,7 +91,14 @@ query(function (db, uri) {
   app.get('/logout', routes.auth.logout);
   
 
-  http.createServer(app).listen(app.get('port'), function(){
+  var server = http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));
+  });
+
+  io = io.listen(server);
+
+
+  io.sockets.on('connection', function (socket) {
+    socket.on('getPosts', routes.post.getPosts);
   });
 });
