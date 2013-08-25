@@ -1,6 +1,6 @@
 <% include layout/header %>
 	<article class="page-talk well">
-		<header class="header">
+		<header class="header clearfix">
 			<img src="<%= talk.thumb %>" alt="<%= talk.presenter %>" class="thumb">
 			<h3><%= talk.title %></h3>
 			<h4 class="presenter"><%= talk.presenter %></h4>
@@ -10,7 +10,7 @@
 			<form class="bs-example form-horizontal" id="timeline-form" method="POST" action="/post/<%= talk._id %>">
 				<fieldset>
 					<div class="form-group">
-						<div class="col-lg-10">
+						<div class="col-lg-12">
 							<textarea class="form-control" rows="3" id="body" name="body" placeholder="What's the buzz?"></textarea>
 						</div>
 					</div>
