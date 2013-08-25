@@ -53,7 +53,7 @@ query(function (db, uri) {
   var noAuth = ['/'];
   var middleware = [
     function (req, res, next) {
-      //exposing the database and socket.io
+      //exposing the database
       req.db = db;
       // models loader
       var modelsLoaded = {};

@@ -1,3 +1,7 @@
+.app-title,
+.app-title:hover {
+  color: #fff;
+}
 .talks .talk {
   width: 750px;
   margin: 0 auto;
